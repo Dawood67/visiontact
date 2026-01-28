@@ -25,7 +25,6 @@ export default function JobsPage() {
       ? jobs
       : jobs.filter((job) => job.status === statusFilter);
 
-  // Count jobs by status
   const jobCounts = jobs.reduce(
     (acc, job) => {
       acc[job.status] = (acc[job.status] || 0) + 1;
@@ -48,7 +47,6 @@ export default function JobsPage() {
       />
 
       <div className="p-8">
-        {/* Stats */}
         <div className="grid grid-cols-4 gap-4 mb-8">
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
             <p className="text-sm text-[var(--text-muted)] mb-1">Active Jobs</p>
@@ -76,7 +74,6 @@ export default function JobsPage() {
           </div>
         </div>
 
-        {/* Filters */}
         <div className="flex items-center gap-4 mb-6">
           <div className="flex items-center gap-2">
             <FilterIcon size={16} className="text-[var(--text-muted)]" />
@@ -99,7 +96,6 @@ export default function JobsPage() {
           </div>
         </div>
 
-        {/* Job list */}
         <JobList jobs={filteredJobs} />
       </div>
     </DashboardLayout>

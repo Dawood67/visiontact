@@ -23,7 +23,6 @@ export function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-64 bg-[var(--bg-secondary)] border-r border-[var(--border)] flex flex-col">
-      {/* Logo */}
       <div className="p-6 border-b border-[var(--border)]">
         <Link href="/jobs" className="flex items-center gap-3">
           <LogoIcon size={36} />
@@ -38,7 +37,6 @@ export function Sidebar() {
         </Link>
       </div>
 
-      {/* Navigation */}
       <nav className="flex-1 p-4">
         <ul className="space-y-1">
           {navItems.map((item) => {
@@ -66,7 +64,6 @@ export function Sidebar() {
         </ul>
       </nav>
 
-      {/* User section */}
       <div className="p-4 border-t border-[var(--border)]">
         <div className="flex items-center gap-3 px-4 py-2">
           <div className="avatar avatar-sm bg-[var(--accent)]">

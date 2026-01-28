@@ -15,7 +15,6 @@ export function AIEvaluationCard({ evaluation }: AIEvaluationCardProps) {
 
   return (
     <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden">
-      {/* Header */}
       <div className="p-5 border-b border-[var(--border)] bg-[rgba(199,93,58,0.05)]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-[var(--accent)] flex items-center justify-center">
@@ -36,7 +35,6 @@ export function AIEvaluationCard({ evaluation }: AIEvaluationCardProps) {
         </div>
       </div>
 
-      {/* Recommendation */}
       <div className="p-5 border-b border-[var(--border)]">
         <div
           className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${recommendConfig.bgClass}`}
@@ -47,7 +45,6 @@ export function AIEvaluationCard({ evaluation }: AIEvaluationCardProps) {
         </div>
       </div>
 
-      {/* Criteria Scores */}
       <div className="p-5 border-b border-[var(--border)]">
         <h4 className="text-sm font-medium text-[var(--text-secondary)] mb-4">
           Criteria Breakdown
@@ -74,7 +71,6 @@ export function AIEvaluationCard({ evaluation }: AIEvaluationCardProps) {
         </div>
       </div>
 
-      {/* Strengths */}
       <div className="p-5 border-b border-[var(--border)]">
         <h4 className="text-sm font-medium text-[var(--text-secondary)] mb-3 flex items-center gap-2">
           <CheckIcon size={14} className="text-[#7D9D6A]" />
@@ -90,7 +86,6 @@ export function AIEvaluationCard({ evaluation }: AIEvaluationCardProps) {
         </ul>
       </div>
 
-      {/* Concerns */}
       <div className="p-5">
         <h4 className="text-sm font-medium text-[var(--text-secondary)] mb-3 flex items-center gap-2">
           <AlertCircleIcon size={14} className="text-[#D4A54C]" />

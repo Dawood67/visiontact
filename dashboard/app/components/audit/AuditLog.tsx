@@ -14,7 +14,6 @@ export function AuditLog({ jobId }: AuditLogProps) {
 
   return (
     <div>
-      {/* Header */}
       <div className="mb-6">
         <h3 className="font-medium text-[var(--text-primary)] mb-1">
           Activity Log
@@ -24,7 +23,6 @@ export function AuditLog({ jobId }: AuditLogProps) {
         </p>
       </div>
 
-      {/* Trust indicator */}
       <div className="flex items-center gap-2 p-3 bg-[rgba(199,93,58,0.1)] border border-[rgba(199,93,58,0.3)] rounded-lg mb-6">
         <div className="w-2 h-2 rounded-full bg-[var(--accent)]" />
         <span className="text-xs font-medium text-[var(--accent-light)]">
@@ -32,7 +30,6 @@ export function AuditLog({ jobId }: AuditLogProps) {
         </span>
       </div>
 
-      {/* Log entries */}
       {logs.length === 0 ? (
         <div className="empty-state py-12 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]">
           <EmptyInboxIcon className="empty-state-icon" />

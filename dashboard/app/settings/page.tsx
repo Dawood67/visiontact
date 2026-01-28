@@ -9,7 +9,6 @@ export default function SettingsPage() {
       <Header title="Settings" subtitle="Manage your workspace preferences" />
 
       <div className="p-8 max-w-3xl">
-        {/* Profile section */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
           <h3 className="font-medium text-[var(--text-primary)] mb-6">Profile</h3>
 
@@ -54,7 +53,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Notifications */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
           <h3 className="font-medium text-[var(--text-primary)] mb-6">Notifications</h3>
 
@@ -115,7 +113,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Preferences */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
           <h3 className="font-medium text-[var(--text-primary)] mb-6">Preferences</h3>
 
@@ -156,7 +153,6 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        {/* Save button */}
         <div className="flex justify-end gap-3">
           <button className="btn btn-secondary">Cancel</button>
           <button className="btn btn-primary">Save Changes</button>

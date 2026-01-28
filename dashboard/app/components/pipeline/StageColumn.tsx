@@ -39,7 +39,6 @@ export function StageColumn({ stage, candidates, onDrop }: StageColumnProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {/* Header */}
       <div className="p-4 border-b border-[var(--border)]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -57,7 +56,6 @@ export function StageColumn({ stage, candidates, onDrop }: StageColumnProps) {
         </div>
       </div>
 
-      {/* Candidates */}
       <div className="p-3 space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto">
         {candidates.length === 0 ? (
           <div className="py-8 text-center">

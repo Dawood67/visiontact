@@ -16,12 +16,10 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
     <Link href={`/jobs/${candidate.jobId}/candidates/${candidate.id}`}>
       <div className="p-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg card-interactive cursor-pointer">
         <div className="flex items-start gap-3">
-          {/* Avatar */}
           <div className="avatar flex-shrink-0">
             {getInitials(candidate.name)}
           </div>
 
-          {/* Info */}
           <div className="flex-1 min-w-0">
             <div className="flex items-center justify-between gap-2 mb-1">
               <h4 className="font-medium text-sm text-[var(--text-primary)] truncate">
@@ -35,7 +33,6 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
               {candidate.role} &middot; {candidate.experience}y exp
             </p>
 
-            {/* Skills */}
             <div className="flex flex-wrap gap-1">
               {candidate.skills.slice(0, 3).map((skill) => (
                 <span
@@ -54,7 +51,6 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="mt-3 pt-3 border-t border-[var(--border)] text-xs text-[var(--text-muted)]">
           Applied {formatRelativeTime(candidate.appliedAt)}
         </div>

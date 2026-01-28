@@ -23,12 +23,10 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
 
   const allCandidates = getCandidatesForJob(jobId);
 
-  // Group candidates by stage
   const candidatesByStage = STAGE_ORDER.reduce(
     (acc, stage) => {
       let candidates = allCandidates.filter((c) => c.stage === stage);
 
-      // Apply search filter
       if (candidateFilters.search) {
         const search = candidateFilters.search.toLowerCase();
         candidates = candidates.filter(
@@ -39,7 +37,6 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
         );
       }
 
-      // Apply sort
       const { field, direction } = candidateSort;
       candidates.sort((a, b) => {
         let comparison = 0;
@@ -72,7 +69,6 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
 
   return (
     <div>
-      {/* Filters */}
       <div className="flex items-center gap-4 mb-6">
         <div className="relative flex-1 max-w-xs">
           <SearchIcon
@@ -104,7 +100,6 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
         </div>
       </div>
 
-      {/* Pipeline columns */}
       <div className="flex gap-4 overflow-x-auto pb-4">
         {STAGE_ORDER.map((stage) => (
           <StageColumn

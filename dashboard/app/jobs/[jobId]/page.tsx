@@ -51,7 +51,6 @@ export default function JobDetailPage({ params }: PageProps) {
 
   const statusConfig = JOB_STATUS_CONFIG[job.status];
 
-  // Count candidates by stage
   const stageCounts = candidates.reduce(
     (acc, c) => {
       acc[c.stage] = (acc[c.stage] || 0) + 1;
@@ -62,10 +61,8 @@ export default function JobDetailPage({ params }: PageProps) {
 
   return (
     <DashboardLayout>
-      {/* Header */}
       <div className="border-b border-[var(--border)] bg-[var(--bg-primary)]">
         <div className="px-8 py-6">
-          {/* Back link */}
           <Link
             href="/jobs"
             className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] mb-4"
@@ -74,7 +71,6 @@ export default function JobDetailPage({ params }: PageProps) {
             Back to Jobs
           </Link>
 
-          {/* Job header */}
           <div className="flex items-start justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
@@ -93,7 +89,6 @@ export default function JobDetailPage({ params }: PageProps) {
               </div>
               <p className="text-[var(--text-secondary)] mb-3">{job.department}</p>
 
-              {/* Meta */}
               <div className="flex items-center gap-5 text-sm text-[var(--text-muted)]">
                 <span className="flex items-center gap-1.5">
                   <MapPinIcon size={14} />
@@ -117,7 +112,6 @@ export default function JobDetailPage({ params }: PageProps) {
             </button>
           </div>
 
-          {/* Stats */}
           <div className="grid grid-cols-4 gap-4 mt-6">
             <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4">
               <p className="text-xs text-[var(--text-muted)] mb-1">Applied</p>
@@ -146,7 +140,6 @@ export default function JobDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Tabs */}
         <div className="px-8">
           <div className="tabs">
             {JOB_TABS.map((tab) => (
@@ -162,7 +155,6 @@ export default function JobDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Tab content */}
       <div className="p-8">
         {activeTab === 'candidates' && <CandidatePipeline jobId={jobId} />}
         {activeTab === 'rubric' && <RubricList jobId={jobId} />}

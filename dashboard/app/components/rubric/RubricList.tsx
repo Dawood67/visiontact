@@ -27,7 +27,6 @@ export function RubricList({ jobId }: RubricListProps) {
 
   return (
     <div>
-      {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
           <h3 className="font-medium text-[var(--text-primary)] mb-1">
@@ -46,7 +45,6 @@ export function RubricList({ jobId }: RubricListProps) {
         </button>
       </div>
 
-      {/* Weight validation */}
       <div
         className={`flex items-center gap-3 p-4 rounded-lg mb-6 ${
           isValid
@@ -71,7 +69,6 @@ export function RubricList({ jobId }: RubricListProps) {
             </p>
           )}
         </div>
-        {/* Progress bar */}
         <div className="w-32">
           <div className="progress-bar">
             <div
@@ -85,7 +82,6 @@ export function RubricList({ jobId }: RubricListProps) {
         </div>
       </div>
 
-      {/* Criteria list */}
       {criteria.length === 0 ? (
         <div className="empty-state py-12 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]">
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center">
@@ -117,7 +113,6 @@ export function RubricList({ jobId }: RubricListProps) {
         </div>
       )}
 
-      {/* Modal */}
       <AddCriterionModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

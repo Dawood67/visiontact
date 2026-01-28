@@ -22,43 +22,34 @@ import {
 } from './mock-data';
 
 interface DashboardStore {
-  // Data
   jobs: Job[];
   candidates: Candidate[];
   rubrics: Record<string, EvaluationRubric>;
   evaluations: Record<string, AIEvaluation>;
   auditLogs: AuditEntry[];
 
-  // Selected items
   selectedJobId: string | null;
   selectedCandidateId: string | null;
 
-  // Filters
   candidateFilters: CandidateFilters;
   candidateSort: CandidateSort;
 
-  // Actions - Selection
   setSelectedJob: (jobId: string | null) => void;
   setSelectedCandidate: (candidateId: string | null) => void;
 
-  // Actions - Candidates
   moveCandidate: (candidateId: string, newStage: CandidateStage) => void;
   updateCandidate: (candidateId: string, updates: Partial<Candidate>) => void;
 
-  // Actions - Filters
   setCandidateFilters: (filters: CandidateFilters) => void;
   setCandidateSort: (sort: CandidateSort) => void;
 
-  // Actions - Rubric
   addCriterion: (jobId: string, criterion: Omit<Criterion, 'id' | 'order'>) => void;
   updateCriterion: (jobId: string, criterionId: string, updates: Partial<Criterion>) => void;
   deleteCriterion: (jobId: string, criterionId: string) => void;
   reorderCriteria: (jobId: string, criteriaIds: string[]) => void;
 
-  // Actions - Audit
   addAuditEntry: (entry: Omit<AuditEntry, 'id' | 'timestamp'>) => void;
 
-  // Computed helpers
   getJobById: (jobId: string) => Job | undefined;
   getCandidateById: (candidateId: string) => Candidate | undefined;
   getCandidatesForJob: (jobId: string) => Candidate[];
@@ -75,18 +66,15 @@ function generateId(): string {
 export const useDashboardStore = create<DashboardStore>()(
   persist(
     (set, get) => ({
-      // Initial data
       jobs: MOCK_JOBS,
       candidates: MOCK_CANDIDATES,
       rubrics: MOCK_RUBRICS,
       evaluations: MOCK_EVALUATIONS,
       auditLogs: MOCK_AUDIT_LOGS,
 
-      // Selected items
       selectedJobId: null,
       selectedCandidateId: null,
 
-      // Default filters
       candidateFilters: {
         stage: 'all',
         search: '',
@@ -96,11 +84,9 @@ export const useDashboardStore = create<DashboardStore>()(
         direction: 'desc',
       },
 
-      // Selection actions
       setSelectedJob: (jobId) => set({ selectedJobId: jobId }),
       setSelectedCandidate: (candidateId) => set({ selectedCandidateId: candidateId }),
 
-      // Candidate actions
       moveCandidate: (candidateId, newStage) => {
         const state = get();
         const candidate = state.candidates.find((c) => c.id === candidateId);
@@ -116,7 +102,6 @@ export const useDashboardStore = create<DashboardStore>()(
           ),
         });
 
-        // Add audit entry
         const actionMap: Record<CandidateStage, AuditEntry['action']> = {
           applied: 'candidate_moved',
           shortlisted: 'candidate_shortlisted',
@@ -144,7 +129,6 @@ export const useDashboardStore = create<DashboardStore>()(
         }));
       },
 
-      // Filter actions
       setCandidateFilters: (filters) =>
         set((state) => ({
           candidateFilters: { ...state.candidateFilters, ...filters },
@@ -152,7 +136,6 @@ export const useDashboardStore = create<DashboardStore>()(
 
       setCandidateSort: (sort) => set({ candidateSort: sort }),
 
-      // Rubric actions
       addCriterion: (jobId, criterion) => {
         set((state) => {
           const rubric = state.rubrics[jobId] || {
@@ -281,7 +264,6 @@ export const useDashboardStore = create<DashboardStore>()(
         });
       },
 
-      // Audit actions
       addAuditEntry: (entry) => {
         const newEntry: AuditEntry = {
           ...entry,
@@ -294,7 +276,6 @@ export const useDashboardStore = create<DashboardStore>()(
         }));
       },
 
-      // Computed helpers
       getJobById: (jobId) => get().jobs.find((j) => j.id === jobId),
 
       getCandidateById: (candidateId) => get().candidates.find((c) => c.id === candidateId),
@@ -305,12 +286,10 @@ export const useDashboardStore = create<DashboardStore>()(
         const state = get();
         let candidates = state.candidates.filter((c) => c.jobId === jobId);
 
-        // Apply stage filter
         if (state.candidateFilters.stage && state.candidateFilters.stage !== 'all') {
           candidates = candidates.filter((c) => c.stage === state.candidateFilters.stage);
         }
 
-        // Apply search filter
         if (state.candidateFilters.search) {
           const search = state.candidateFilters.search.toLowerCase();
           candidates = candidates.filter(
@@ -321,7 +300,6 @@ export const useDashboardStore = create<DashboardStore>()(
           );
         }
 
-        // Apply sort
         const { field, direction } = state.candidateSort;
         candidates.sort((a, b) => {
           let comparison = 0;

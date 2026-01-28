@@ -12,7 +12,6 @@ export function ResumePreview({ candidateName }: ResumePreviewProps) {
 
   return (
     <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden">
-      {/* Header */}
       <div className="p-4 border-b border-[var(--border)] flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center">
@@ -28,7 +27,6 @@ export function ResumePreview({ candidateName }: ResumePreviewProps) {
         </button>
       </div>
 
-      {/* Preview */}
       <div className="p-6 bg-[var(--bg-tertiary)] max-h-96 overflow-y-auto">
         <pre className="text-xs text-[var(--text-secondary)] font-mono whitespace-pre-wrap leading-relaxed">
           {resumeContent}

@@ -108,7 +108,6 @@ You'll work on NLP models for resume parsing, recommendation systems for candida
 ];
 
 export const MOCK_CANDIDATES: Candidate[] = [
-  // Senior Frontend Engineer candidates
   {
     id: 'cand-1',
     jobId: 'job-1',
@@ -224,7 +223,6 @@ export const MOCK_CANDIDATES: Candidate[] = [
     appliedAt: '2025-01-21T08:00:00Z',
     updatedAt: '2025-01-21T08:00:00Z',
   },
-  // Product Designer candidates
   {
     id: 'cand-9',
     jobId: 'job-2',
@@ -253,7 +251,6 @@ export const MOCK_CANDIDATES: Candidate[] = [
     appliedAt: '2025-01-12T14:00:00Z',
     updatedAt: '2025-01-18T10:00:00Z',
   },
-  // ML Engineer candidates
   {
     id: 'cand-11',
     jobId: 'job-3',

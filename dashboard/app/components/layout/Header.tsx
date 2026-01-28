@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { SearchIcon } from '../ui/Icons';
+import { SearchIcon } from "../ui/Icons";
 
 interface HeaderProps {
   title: string;
@@ -21,12 +21,11 @@ export function Header({ title, subtitle, actions }: HeaderProps) {
       </div>
 
       <div className="flex items-center gap-4">
-        {/* Search */}
         <div className="relative">
-          <SearchIcon
+          {/* <SearchIcon
             className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
             size={16}
-          />
+          /> */}
           <input
             type="text"
             placeholder="Search..."

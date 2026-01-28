@@ -36,7 +36,6 @@ export function AddCriterionModal({
       jobId,
     });
 
-    // Reset form
     setName('');
     setDescription('');
     setWeight('');

@@ -1,25 +1,40 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { useDashboardStore } from '../lib/store';
-import { STAGE_CONFIG, SORT_OPTIONS } from '../lib/constants';
-import { parseSortValue, formatDate, getInitials, getScoreColor } from '../lib/utils';
-import { DashboardLayout } from '../components/layout/DashboardLayout';
-import { Header } from '../components/layout/Header';
-import { SearchIcon, FilterIcon, ChevronRightIcon } from '../components/ui/Icons';
-import type { CandidateStage, CandidateSortField, SortDirection } from '../lib/types';
+import { useState } from "react";
+import Link from "next/link";
+import { useDashboardStore } from "../lib/store";
+import { STAGE_CONFIG, SORT_OPTIONS } from "../lib/constants";
+import {
+  parseSortValue,
+  formatDate,
+  getInitials,
+  getScoreColor,
+} from "../lib/utils";
+import { DashboardLayout } from "../components/layout/DashboardLayout";
+import { Header } from "../components/layout/Header";
+import {
+  SearchIcon,
+  FilterIcon,
+  ChevronRightIcon,
+} from "../components/ui/Icons";
+import type {
+  CandidateStage,
+  CandidateSortField,
+  SortDirection,
+} from "../lib/types";
 
 export default function AllCandidatesPage() {
   const { candidates, jobs } = useDashboardStore();
-  const [search, setSearch] = useState('');
-  const [stageFilter, setStageFilter] = useState<CandidateStage | 'all'>('all');
-  const [sort, setSort] = useState<{ field: CandidateSortField; direction: SortDirection }>({
-    field: 'date',
-    direction: 'desc',
+  const [search, setSearch] = useState("");
+  const [stageFilter, setStageFilter] = useState<CandidateStage | "all">("all");
+  const [sort, setSort] = useState<{
+    field: CandidateSortField;
+    direction: SortDirection;
+  }>({
+    field: "date",
+    direction: "desc",
   });
 
-  // Filter candidates
   let filteredCandidates = [...candidates];
 
   if (search) {
@@ -28,35 +43,36 @@ export default function AllCandidatesPage() {
       (c) =>
         c.name.toLowerCase().includes(searchLower) ||
         c.email.toLowerCase().includes(searchLower) ||
-        c.skills.some((s) => s.toLowerCase().includes(searchLower))
+        c.skills.some((s) => s.toLowerCase().includes(searchLower)),
     );
   }
 
-  if (stageFilter !== 'all') {
-    filteredCandidates = filteredCandidates.filter((c) => c.stage === stageFilter);
+  if (stageFilter !== "all") {
+    filteredCandidates = filteredCandidates.filter(
+      (c) => c.stage === stageFilter,
+    );
   }
 
-  // Sort candidates
   filteredCandidates.sort((a, b) => {
     let comparison = 0;
     switch (sort.field) {
-      case 'score':
+      case "score":
         comparison = a.score - b.score;
         break;
-      case 'name':
+      case "name":
         comparison = a.name.localeCompare(b.name);
         break;
-      case 'date':
-        comparison = new Date(a.appliedAt).getTime() - new Date(b.appliedAt).getTime();
+      case "date":
+        comparison =
+          new Date(a.appliedAt).getTime() - new Date(b.appliedAt).getTime();
         break;
     }
-    return sort.direction === 'desc' ? -comparison : comparison;
+    return sort.direction === "desc" ? -comparison : comparison;
   });
 
-  // Get job title for candidate
   const getJobTitle = (jobId: string) => {
     const job = jobs.find((j) => j.id === jobId);
-    return job?.title || 'Unknown Position';
+    return job?.title || "Unknown Position";
   };
 
   return (
@@ -67,13 +83,12 @@ export default function AllCandidatesPage() {
       />
 
       <div className="p-8">
-        {/* Filters */}
         <div className="flex items-center gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
-            <SearchIcon
+            {/* <SearchIcon
               className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
               size={16}
-            />
+            /> */}
             <input
               type="text"
               placeholder="Search by name, email, or skill..."
@@ -87,7 +102,9 @@ export default function AllCandidatesPage() {
             <FilterIcon size={16} className="text-[var(--text-muted)]" />
             <select
               value={stageFilter}
-              onChange={(e) => setStageFilter(e.target.value as CandidateStage | 'all')}
+              onChange={(e) =>
+                setStageFilter(e.target.value as CandidateStage | "all")
+              }
               className="select h-10 w-36"
             >
               <option value="all">All Stages</option>
@@ -112,7 +129,6 @@ export default function AllCandidatesPage() {
           </div>
         </div>
 
-        {/* Candidates table */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden">
           <table className="table">
             <thead>
@@ -129,7 +145,9 @@ export default function AllCandidatesPage() {
               {filteredCandidates.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="text-center py-12">
-                    <p className="text-[var(--text-muted)]">No candidates found</p>
+                    <p className="text-[var(--text-muted)]">
+                      No candidates found
+                    </p>
                   </td>
                 </tr>
               ) : (
@@ -155,20 +173,28 @@ export default function AllCandidatesPage() {
                         </div>
                       </td>
                       <td>
-                        <p className="text-sm">{getJobTitle(candidate.jobId)}</p>
+                        <p className="text-sm">
+                          {getJobTitle(candidate.jobId)}
+                        </p>
                       </td>
                       <td>
-                        <span className={`px-2 py-0.5 text-xs font-medium rounded-full ${stageConfig.bgClass}`}>
+                        <span
+                          className={`px-2 py-0.5 text-xs font-medium rounded-full ${stageConfig.bgClass}`}
+                        >
                           {stageConfig.label}
                         </span>
                       </td>
                       <td>
-                        <span className={`font-semibold tabular-nums ${scoreColorClass}`}>
+                        <span
+                          className={`font-semibold tabular-nums ${scoreColorClass}`}
+                        >
                           {candidate.score}
                         </span>
                       </td>
                       <td>
-                        <span className="text-sm">{formatDate(candidate.appliedAt)}</span>
+                        <span className="text-sm">
+                          {formatDate(candidate.appliedAt)}
+                        </span>
                       </td>
                       <td>
                         <Link

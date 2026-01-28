@@ -8,11 +8,9 @@ import { STAGE_CONFIG } from '../lib/constants';
 export default function AnalyticsPage() {
   const { jobs, candidates } = useDashboardStore();
 
-  // Calculate metrics
   const totalCandidates = candidates.length;
   const activeJobs = jobs.filter((j) => j.status === 'active').length;
 
-  // Stage distribution
   const stageDistribution = Object.entries(STAGE_CONFIG).map(([stage, config]) => ({
     stage,
     label: config.label,
@@ -20,7 +18,6 @@ export default function AnalyticsPage() {
     count: candidates.filter((c) => c.stage === stage).length,
   }));
 
-  // Average score by stage
   const averageScores = Object.entries(STAGE_CONFIG).map(([stage, config]) => {
     const stageCandidates = candidates.filter((c) => c.stage === stage);
     const avgScore =
@@ -37,7 +34,6 @@ export default function AnalyticsPage() {
     };
   });
 
-  // Top skills across all candidates
   const skillCounts = candidates.reduce(
     (acc, c) => {
       c.skills.forEach((skill) => {
@@ -57,7 +53,6 @@ export default function AnalyticsPage() {
       <Header title="Analytics" subtitle="Recruitment metrics and insights" />
 
       <div className="p-8">
-        {/* Overview cards */}
         <div className="grid grid-cols-4 gap-4 mb-8">
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
             <p className="text-sm text-[var(--text-muted)] mb-2">Total Candidates</p>
@@ -94,7 +89,6 @@ export default function AnalyticsPage() {
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-          {/* Stage distribution */}
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
             <h3 className="font-medium text-[var(--text-primary)] mb-6">
               Candidates by Stage
@@ -122,7 +116,6 @@ export default function AnalyticsPage() {
             </div>
           </div>
 
-          {/* Average score by stage */}
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
             <h3 className="font-medium text-[var(--text-primary)] mb-6">
               Average Score by Stage
@@ -153,7 +146,6 @@ export default function AnalyticsPage() {
             </div>
           </div>
 
-          {/* Top skills */}
           <div className="col-span-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
             <h3 className="font-medium text-[var(--text-primary)] mb-6">
               Most Common Skills

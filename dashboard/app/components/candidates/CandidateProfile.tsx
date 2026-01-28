@@ -33,19 +33,15 @@ export function CandidateProfile({
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {/* Left column - Profile info */}
       <div className="lg:col-span-2 space-y-6">
-        {/* Header card */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
           <div className="flex items-start gap-5">
-            {/* Avatar */}
             <div className="avatar avatar-lg bg-[var(--accent)]">
               <span className="text-[var(--text-primary)]">
                 {getInitials(candidate.name)}
               </span>
             </div>
 
-            {/* Info */}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-1">
                 <h2 className="font-serif text-xl font-semibold text-[var(--text-primary)]">
@@ -57,7 +53,6 @@ export function CandidateProfile({
               </div>
               <p className="text-[var(--text-secondary)] mb-4">{candidate.role}</p>
 
-              {/* Contact info */}
               <div className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)]">
                 <a
                   href={`mailto:${candidate.email}`}
@@ -87,7 +82,6 @@ export function CandidateProfile({
               </div>
             </div>
 
-            {/* Score */}
             <div className="text-right">
               <div className={`text-3xl font-bold tabular-nums ${scoreColorClass}`}>
                 {candidate.score}
@@ -96,7 +90,6 @@ export function CandidateProfile({
             </div>
           </div>
 
-          {/* Quick stats */}
           <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[var(--border)]">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center">
@@ -134,16 +127,13 @@ export function CandidateProfile({
           </div>
         </div>
 
-        {/* Skills */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
           <h3 className="font-medium text-[var(--text-primary)] mb-4">Skills</h3>
           <SkillsTags skills={candidate.skills} />
         </div>
 
-        {/* Resume */}
         <ResumePreview candidateName={candidate.name} />
 
-        {/* Notes */}
         {candidate.notes && (
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
             <h3 className="font-medium text-[var(--text-primary)] mb-3">Notes</h3>
@@ -152,9 +142,7 @@ export function CandidateProfile({
         )}
       </div>
 
-      {/* Right column - AI Evaluation & Actions */}
       <div className="space-y-6">
-        {/* Action buttons */}
         <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
           <h3 className="font-medium text-[var(--text-primary)] mb-4">Actions</h3>
           <div className="space-y-2">
@@ -188,7 +176,6 @@ export function CandidateProfile({
           </div>
         </div>
 
-        {/* AI Evaluation */}
         {evaluation ? (
           <AIEvaluationCard evaluation={evaluation} />
         ) : (
