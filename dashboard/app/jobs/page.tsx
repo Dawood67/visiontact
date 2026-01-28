@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useDashboardStore } from '../lib/store';
-import { DashboardLayout } from '../components/layout/DashboardLayout';
-import { Header } from '../components/layout/Header';
-import { JobList } from '../components/jobs/JobList';
-import { PlusIcon, FilterIcon } from '../components/ui/Icons';
-import type { JobStatus } from '../lib/types';
+import { useState } from "react";
+import { useDashboardStore } from "../lib/store";
+import { DashboardLayout } from "../components/layout/DashboardLayout";
+import { Header } from "../components/layout/Header";
+import { JobList } from "../components/jobs/JobList";
+import { PlusIcon, FilterIcon } from "../components/ui/Icons";
+import type { JobStatus } from "../lib/types";
 
-const statusFilters: { value: JobStatus | 'all'; label: string }[] = [
-  { value: 'all', label: 'All Jobs' },
-  { value: 'active', label: 'Active' },
-  { value: 'paused', label: 'Paused' },
-  { value: 'draft', label: 'Draft' },
-  { value: 'closed', label: 'Closed' },
+const statusFilters: { value: JobStatus | "all"; label: string }[] = [
+  { value: "all", label: "All Jobs" },
+  { value: "active", label: "Active" },
+  { value: "paused", label: "Paused" },
+  { value: "draft", label: "Draft" },
+  { value: "closed", label: "Closed" },
 ];
 
 export default function JobsPage() {
   const { jobs } = useDashboardStore();
-  const [statusFilter, setStatusFilter] = useState<JobStatus | 'all'>('all');
+  const [statusFilter, setStatusFilter] = useState<JobStatus | "all">("all");
 
   const filteredJobs =
-    statusFilter === 'all'
+    statusFilter === "all"
       ? jobs
       : jobs.filter((job) => job.status === statusFilter);
 
@@ -30,7 +30,7 @@ export default function JobsPage() {
       acc[job.status] = (acc[job.status] || 0) + 1;
       return acc;
     },
-    {} as Record<JobStatus, number>
+    {} as Record<JobStatus, number>,
   );
 
   return (
@@ -55,7 +55,9 @@ export default function JobsPage() {
             </p>
           </div>
           <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-            <p className="text-sm text-[var(--text-muted)] mb-1">Total Candidates</p>
+            <p className="text-sm text-[var(--text-muted)] mb-1">
+              Total Candidates
+            </p>
             <p className="text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
               {jobs.reduce((sum, job) => sum + job.candidatesCount, 0)}
             </p>
@@ -84,10 +86,10 @@ export default function JobsPage() {
               <button
                 key={filter.value}
                 onClick={() => setStatusFilter(filter.value)}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg ${
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg cursor-pointer ${
                   statusFilter === filter.value
-                    ? 'bg-[var(--accent)] text-[var(--text-primary)]'
-                    : 'text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]'
+                    ? "bg-[var(--accent)] text-[var(--text-primary)]"
+                    : "text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"
                 }`}
               >
                 {filter.label}
