@@ -46,47 +46,47 @@ export default function JobsPage() {
         }
       />
 
-      <div className="p-8">
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-            <p className="text-sm text-[var(--text-muted)] mb-1">Active Jobs</p>
-            <p className="text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
+      <div className="p-4 sm:p-6 lg:p-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1">Active Jobs</p>
+            <p className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
               {jobCounts.active || 0}
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-            <p className="text-sm text-[var(--text-muted)] mb-1">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1">
               Total Candidates
             </p>
-            <p className="text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
+            <p className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
               {jobs.reduce((sum, job) => sum + job.candidatesCount, 0)}
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-            <p className="text-sm text-[var(--text-muted)] mb-1">Paused</p>
-            <p className="text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1">Paused</p>
+            <p className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
               {jobCounts.paused || 0}
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-            <p className="text-sm text-[var(--text-muted)] mb-1">Drafts</p>
-            <p className="text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1">Drafts</p>
+            <p className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] tabular-nums">
               {jobCounts.draft || 0}
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
           <div className="flex items-center gap-2">
             <FilterIcon size={16} className="text-[var(--text-muted)]" />
             <span className="text-sm text-[var(--text-muted)]">Filter:</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
             {statusFilters.map((filter) => (
               <button
                 key={filter.value}
                 onClick={() => setStatusFilter(filter.value)}
-                className={`px-3 py-1.5 text-sm font-medium rounded-lg cursor-pointer ${
+                className={`px-3 py-1.5 text-sm font-medium rounded-lg cursor-pointer whitespace-nowrap flex-shrink-0 ${
                   statusFilter === filter.value
                     ? "bg-[var(--accent)] text-[var(--text-primary)]"
                     : "text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)]"

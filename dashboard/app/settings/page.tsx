@@ -8,11 +8,11 @@ export default function SettingsPage() {
     <DashboardLayout>
       <Header title="Settings" subtitle="Manage your workspace preferences" />
 
-      <div className="p-8 max-w-3xl">
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
-          <h3 className="font-medium text-[var(--text-primary)] mb-6">Profile</h3>
+      <div className="p-4 sm:p-6 lg:p-8 max-w-3xl">
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+          <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">Profile</h3>
 
-          <div className="flex items-start gap-6 mb-6">
+          <div className="flex items-start gap-4 sm:gap-6 mb-4 sm:mb-6">
             <div className="avatar avatar-lg bg-[var(--accent)]">
               <span className="text-[var(--text-primary)]">AM</span>
             </div>
@@ -21,7 +21,7 @@ export default function SettingsPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
                 Full Name
@@ -53,8 +53,8 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
-          <h3 className="font-medium text-[var(--text-primary)] mb-6">Notifications</h3>
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+          <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">Notifications</h3>
 
           <div className="space-y-4">
             <label className="flex items-center justify-between cursor-pointer">
@@ -113,8 +113,8 @@ export default function SettingsPage() {
           </div>
         </div>
 
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 mb-6">
-          <h3 className="font-medium text-[var(--text-primary)] mb-6">Preferences</h3>
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
+          <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">Preferences</h3>
 
           <div className="space-y-4">
             <div>

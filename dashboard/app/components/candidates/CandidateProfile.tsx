@@ -32,40 +32,49 @@ export function CandidateProfile({
   const scoreColorClass = getScoreColor(candidate.score);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      <div className="lg:col-span-2 space-y-6">
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-          <div className="flex items-start gap-5">
-            <div className="avatar avatar-lg bg-[var(--accent)]">
-              <span className="text-[var(--text-primary)]">
-                {getInitials(candidate.name)}
-              </span>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="lg:col-span-2 space-y-4 sm:space-y-6">
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
+            <div className="flex items-center gap-4 sm:block">
+              <div className="avatar avatar-lg bg-[var(--accent)]">
+                <span className="text-[var(--text-primary)]">
+                  {getInitials(candidate.name)}
+                </span>
+              </div>
+              {/* Mobile score display */}
+              <div className="sm:hidden text-right">
+                <div className={`text-2xl font-bold tabular-nums ${scoreColorClass}`}>
+                  {candidate.score}
+                </div>
+                <p className="text-xs text-[var(--text-muted)]">{getScoreLabel(candidate.score)}</p>
+              </div>
             </div>
 
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-1">
-                <h2 className="font-serif text-xl font-semibold text-[var(--text-primary)]">
+            <div className="flex-1 min-w-0">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-1">
+                <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--text-primary)]">
                   {candidate.name}
                 </h2>
                 <span className={`px-2.5 py-0.5 text-xs font-medium rounded-full ${stageConfig.bgClass}`}>
                   {stageConfig.label}
                 </span>
               </div>
-              <p className="text-[var(--text-secondary)] mb-4">{candidate.role}</p>
+              <p className="text-[var(--text-secondary)] mb-3 sm:mb-4">{candidate.role}</p>
 
-              <div className="flex flex-wrap gap-4 text-sm text-[var(--text-muted)]">
+              <div className="flex flex-wrap gap-3 sm:gap-4 text-sm text-[var(--text-muted)]">
                 <a
                   href={`mailto:${candidate.email}`}
-                  className="flex items-center gap-1.5 hover:text-[var(--text-secondary)]"
+                  className="flex items-center gap-1.5 hover:text-[var(--text-secondary)] break-all"
                 >
-                  <MailIcon size={14} />
-                  {candidate.email}
+                  <MailIcon size={14} className="flex-shrink-0" />
+                  <span className="truncate">{candidate.email}</span>
                 </a>
                 <a
                   href={`tel:${candidate.phone}`}
                   className="flex items-center gap-1.5 hover:text-[var(--text-secondary)]"
                 >
-                  <PhoneIcon size={14} />
+                  <PhoneIcon size={14} className="flex-shrink-0" />
                   {candidate.phone}
                 </a>
                 {candidate.linkedinUrl && (
@@ -75,14 +84,15 @@ export function CandidateProfile({
                     rel="noopener noreferrer"
                     className="flex items-center gap-1.5 hover:text-[var(--text-secondary)]"
                   >
-                    <LinkedinIcon size={14} />
+                    <LinkedinIcon size={14} className="flex-shrink-0" />
                     LinkedIn
                   </a>
                 )}
               </div>
             </div>
 
-            <div className="text-right">
+            {/* Desktop score display */}
+            <div className="hidden sm:block text-right flex-shrink-0">
               <div className={`text-3xl font-bold tabular-nums ${scoreColorClass}`}>
                 {candidate.score}
               </div>
@@ -90,35 +100,38 @@ export function CandidateProfile({
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-[var(--border)]">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center">
-                <BriefcaseIcon size={16} className="text-[var(--text-muted)]" />
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-[var(--border)]">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                <BriefcaseIcon size={14} className="text-[var(--text-muted)] sm:hidden" />
+                <BriefcaseIcon size={16} className="text-[var(--text-muted)] hidden sm:block" />
               </div>
-              <div>
-                <p className="text-sm font-medium text-[var(--text-primary)]">
-                  {candidate.experience} years
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-[var(--text-primary)]">
+                  {candidate.experience} yrs
                 </p>
-                <p className="text-xs text-[var(--text-muted)]">Experience</p>
+                <p className="text-xs text-[var(--text-muted)]">Exp</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center">
-                <CalendarIcon size={16} className="text-[var(--text-muted)]" />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                <CalendarIcon size={14} className="text-[var(--text-muted)] sm:hidden" />
+                <CalendarIcon size={16} className="text-[var(--text-muted)] hidden sm:block" />
               </div>
-              <div>
-                <p className="text-sm font-medium text-[var(--text-primary)]">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-[var(--text-primary)] truncate">
                   {formatDate(candidate.appliedAt)}
                 </p>
                 <p className="text-xs text-[var(--text-muted)]">Applied</p>
               </div>
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center">
-                <StarIcon size={16} className="text-[var(--text-muted)]" />
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg bg-[var(--bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                <StarIcon size={14} className="text-[var(--text-muted)] sm:hidden" />
+                <StarIcon size={16} className="text-[var(--text-muted)] hidden sm:block" />
               </div>
-              <div>
-                <p className="text-sm font-medium text-[var(--text-primary)]">
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-[var(--text-primary)]">
                   {candidate.skills.length} skills
                 </p>
                 <p className="text-xs text-[var(--text-muted)]">Listed</p>
@@ -127,24 +140,24 @@ export function CandidateProfile({
           </div>
         </div>
 
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-          <h3 className="font-medium text-[var(--text-primary)] mb-4">Skills</h3>
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+          <h3 className="font-medium text-[var(--text-primary)] mb-3 sm:mb-4">Skills</h3>
           <SkillsTags skills={candidate.skills} />
         </div>
 
         <ResumePreview candidateName={candidate.name} />
 
         {candidate.notes && (
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
             <h3 className="font-medium text-[var(--text-primary)] mb-3">Notes</h3>
             <p className="text-sm text-[var(--text-secondary)]">{candidate.notes}</p>
           </div>
         )}
       </div>
 
-      <div className="space-y-6">
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-5">
-          <h3 className="font-medium text-[var(--text-primary)] mb-4">Actions</h3>
+      <div className="space-y-4 sm:space-y-6">
+        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-5">
+          <h3 className="font-medium text-[var(--text-primary)] mb-3 sm:mb-4">Actions</h3>
           <div className="space-y-2">
             {candidate.stage !== 'shortlisted' && candidate.stage !== 'interview' && (
               <button
@@ -179,9 +192,9 @@ export function CandidateProfile({
         {evaluation ? (
           <AIEvaluationCard evaluation={evaluation} />
         ) : (
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6 text-center">
-            <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center">
-              <span className="text-[var(--text-muted)]">AI</span>
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6 text-center">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 rounded-full bg-[var(--bg-tertiary)] flex items-center justify-center">
+              <span className="text-[var(--text-muted)] text-sm sm:text-base">AI</span>
             </div>
             <h3 className="font-medium text-[var(--text-primary)] mb-1">
               No AI Evaluation

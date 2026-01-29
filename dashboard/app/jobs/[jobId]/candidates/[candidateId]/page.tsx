@@ -52,18 +52,18 @@ export default function CandidateProfilePage({ params }: PageProps) {
   return (
     <DashboardLayout>
       {/* Header */}
-      <div className="border-b border-[var(--border)] bg-[var(--bg-primary)] px-8 py-6">
+      <div className="border-b border-[var(--border)] bg-[var(--bg-primary)] px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-4">
-          <Link href="/jobs" className="hover:text-[var(--text-secondary)]">
+        <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-4 overflow-x-auto">
+          <Link href="/jobs" className="hover:text-[var(--text-secondary)] whitespace-nowrap">
             Jobs
           </Link>
           <span>/</span>
-          <Link href={`/jobs/${jobId}`} className="hover:text-[var(--text-secondary)]">
+          <Link href={`/jobs/${jobId}`} className="hover:text-[var(--text-secondary)] whitespace-nowrap truncate max-w-[150px] sm:max-w-none">
             {job.title}
           </Link>
           <span>/</span>
-          <span className="text-[var(--text-secondary)]">{candidate.name}</span>
+          <span className="text-[var(--text-secondary)] whitespace-nowrap truncate">{candidate.name}</span>
         </div>
 
         {/* Back link */}
@@ -77,7 +77,7 @@ export default function CandidateProfilePage({ params }: PageProps) {
       </div>
 
       {/* Content */}
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         <CandidateProfile
           candidate={candidate}
           evaluation={evaluation}

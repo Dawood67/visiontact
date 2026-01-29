@@ -27,7 +27,7 @@ export function RubricList({ jobId }: RubricListProps) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h3 className="font-medium text-[var(--text-primary)] mb-1">
             Evaluation Criteria
@@ -38,7 +38,7 @@ export function RubricList({ jobId }: RubricListProps) {
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="btn btn-primary"
+          className="btn btn-primary w-full sm:w-auto"
         >
           <PlusIcon size={16} />
           Add Criterion
@@ -46,30 +46,32 @@ export function RubricList({ jobId }: RubricListProps) {
       </div>
 
       <div
-        className={`flex items-center gap-3 p-4 rounded-lg mb-6 ${
+        className={`flex flex-col sm:flex-row sm:items-center gap-3 p-3 sm:p-4 rounded-lg mb-6 ${
           isValid
             ? 'bg-[rgba(125,157,106,0.1)] border border-[rgba(125,157,106,0.3)]'
             : 'bg-[rgba(212,165,76,0.1)] border border-[rgba(212,165,76,0.3)]'
         }`}
       >
-        {isValid ? (
-          <CheckIcon size={18} className="text-[#7D9D6A]" />
-        ) : (
-          <AlertCircleIcon size={18} className="text-[#D4A54C]" />
-        )}
-        <div className="flex-1">
-          <p className={`text-sm font-medium ${isValid ? 'text-[#96B580]' : 'text-[#E0B85C]'}`}>
-            Total Weight: {totalWeight}%
-          </p>
-          {!isValid && (
-            <p className="text-xs text-[var(--text-muted)]">
-              {totalWeight < 100
-                ? `Add ${remainingWeight}% more weight to reach 100%`
-                : `Remove ${-remainingWeight}% to reach 100%`}
-            </p>
+        <div className="flex items-center gap-3 flex-1">
+          {isValid ? (
+            <CheckIcon size={18} className="text-[#7D9D6A] flex-shrink-0" />
+          ) : (
+            <AlertCircleIcon size={18} className="text-[#D4A54C] flex-shrink-0" />
           )}
+          <div className="flex-1 min-w-0">
+            <p className={`text-sm font-medium ${isValid ? 'text-[#96B580]' : 'text-[#E0B85C]'}`}>
+              Total Weight: {totalWeight}%
+            </p>
+            {!isValid && (
+              <p className="text-xs text-[var(--text-muted)]">
+                {totalWeight < 100
+                  ? `Add ${remainingWeight}% more weight to reach 100%`
+                  : `Remove ${-remainingWeight}% to reach 100%`}
+              </p>
+            )}
+          </div>
         </div>
-        <div className="w-32">
+        <div className="w-full sm:w-32">
           <div className="progress-bar">
             <div
               className="progress-bar-fill"

@@ -37,8 +37,8 @@ export function CriterionRow({ criterion, onUpdate, onDelete }: CriterionRowProp
 
   if (isEditing) {
     return (
-      <div className="p-4 bg-[var(--bg-tertiary)] border border-[var(--border-hover)] rounded-lg">
-        <div className="grid grid-cols-[1fr,1fr,80px] gap-4 mb-3">
+      <div className="p-3 sm:p-4 bg-[var(--bg-tertiary)] border border-[var(--border-hover)] rounded-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr,1fr,80px] gap-3 sm:gap-4 mb-3">
           <input
             type="text"
             value={editName}
@@ -82,31 +82,45 @@ export function CriterionRow({ criterion, onUpdate, onDelete }: CriterionRowProp
   }
 
   return (
-    <div className="flex items-center gap-4 p-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg group">
-      {/* Drag handle */}
-      <button className="text-[var(--text-muted)] cursor-grab opacity-0 group-hover:opacity-100">
+    <div className="flex items-start sm:items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg group">
+      {/* Drag handle - hidden on mobile */}
+      <button className="hidden sm:block text-[var(--text-muted)] cursor-grab opacity-0 group-hover:opacity-100">
         <GripVerticalIcon size={16} />
       </button>
 
       {/* Content */}
-      <div className="flex-1 grid grid-cols-[1fr,1fr,80px] gap-4 items-center">
-        <div>
-          <h4 className="text-sm font-medium text-[var(--text-primary)]">
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-2 mb-1 sm:hidden">
+          <h4 className="text-sm font-medium text-[var(--text-primary)] truncate">
             {criterion.name}
           </h4>
-        </div>
-        <p className="text-sm text-[var(--text-muted)] truncate">
-          {criterion.description}
-        </p>
-        <div className="text-right">
-          <span className="text-sm font-semibold text-[var(--accent)] tabular-nums">
+          <span className="text-sm font-semibold text-[var(--accent)] tabular-nums flex-shrink-0">
             {criterion.weight}%
           </span>
         </div>
+        <p className="text-xs sm:text-sm text-[var(--text-muted)] truncate sm:hidden">
+          {criterion.description}
+        </p>
+        {/* Desktop layout */}
+        <div className="hidden sm:grid sm:grid-cols-[1fr,1fr,80px] gap-4 items-center">
+          <div>
+            <h4 className="text-sm font-medium text-[var(--text-primary)]">
+              {criterion.name}
+            </h4>
+          </div>
+          <p className="text-sm text-[var(--text-muted)] truncate">
+            {criterion.description}
+          </p>
+          <div className="text-right">
+            <span className="text-sm font-semibold text-[var(--accent)] tabular-nums">
+              {criterion.weight}%
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Actions */}
-      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
+      {/* Actions - always visible on mobile */}
+      <div className="flex items-center gap-1 sm:opacity-0 sm:group-hover:opacity-100">
         <button
           onClick={() => setIsEditing(true)}
           className="p-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-elevated)] rounded"

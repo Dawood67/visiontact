@@ -82,8 +82,8 @@ export default function AllCandidatesPage() {
         subtitle={`${candidates.length} total candidates across all jobs`}
       />
 
-      <div className="p-8">
-        <div className="flex items-center gap-4 mb-6">
+      <div className="p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
             <input
               type="text"
@@ -95,13 +95,13 @@ export default function AllCandidatesPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <FilterIcon size={16} className="text-[var(--text-muted)]" />
+            <FilterIcon size={16} className="text-[var(--text-muted)] hidden sm:block" />
             <select
               value={stageFilter}
               onChange={(e) =>
                 setStageFilter(e.target.value as CandidateStage | "all")
               }
-              className="select h-10 w-36"
+              className="select h-10 flex-1 sm:flex-none sm:w-36"
             >
               <option value="all">All Stages</option>
               {Object.entries(STAGE_CONFIG).map(([value, config]) => (
@@ -114,7 +114,7 @@ export default function AllCandidatesPage() {
             <select
               value={`${sort.field}-${sort.direction}`}
               onChange={(e) => setSort(parseSortValue(e.target.value))}
-              className="select h-10 w-40"
+              className="select h-10 flex-1 sm:flex-none sm:w-40"
             >
               {SORT_OPTIONS.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -125,7 +125,8 @@ export default function AllCandidatesPage() {
           </div>
         </div>
 
-        <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden">
+        {/* Desktop table view */}
+        <div className="hidden md:block bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden">
           <table className="table">
             <thead>
               <tr>
@@ -206,6 +207,60 @@ export default function AllCandidatesPage() {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile card view */}
+        <div className="md:hidden space-y-3">
+          {filteredCandidates.length === 0 ? (
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-8 text-center">
+              <p className="text-[var(--text-muted)]">No candidates found</p>
+            </div>
+          ) : (
+            filteredCandidates.map((candidate) => {
+              const stageConfig = STAGE_CONFIG[candidate.stage];
+              const scoreColorClass = getScoreColor(candidate.score);
+
+              return (
+                <Link
+                  key={candidate.id}
+                  href={`/jobs/${candidate.jobId}/candidates/${candidate.id}`}
+                  className="block bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 card-interactive"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="avatar avatar-sm">
+                        {getInitials(candidate.name)}
+                      </div>
+                      <div>
+                        <p className="font-medium text-[var(--text-primary)]">
+                          {candidate.name}
+                        </p>
+                        <p className="text-xs text-[var(--text-muted)]">
+                          {candidate.email}
+                        </p>
+                      </div>
+                    </div>
+                    <span className={`font-semibold tabular-nums ${scoreColorClass}`}>
+                      {candidate.score}
+                    </span>
+                  </div>
+                  <p className="text-sm text-[var(--text-secondary)] mb-3">
+                    {getJobTitle(candidate.jobId)}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`px-2 py-0.5 text-xs font-medium rounded-full ${stageConfig.bgClass}`}
+                    >
+                      {stageConfig.label}
+                    </span>
+                    <span className="text-xs text-[var(--text-muted)]">
+                      {formatDate(candidate.appliedAt)}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </DashboardLayout>

@@ -34,12 +34,12 @@ export function StageColumn({ stage, candidates, onDrop }: StageColumnProps) {
 
   return (
     <div
-      className="flex-1 min-w-[280px] max-w-[320px] bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]"
+      className="flex-shrink-0 w-[260px] sm:w-[280px] sm:min-w-[280px] sm:max-w-[320px] sm:flex-1 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]"
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <div className="p-4 border-b border-[var(--border)]">
+      <div className="p-3 sm:p-4 border-b border-[var(--border)]">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div
@@ -56,7 +56,7 @@ export function StageColumn({ stage, candidates, onDrop }: StageColumnProps) {
         </div>
       </div>
 
-      <div className="p-3 space-y-3 max-h-[calc(100vh-280px)] overflow-y-auto">
+      <div className="p-2 sm:p-3 space-y-2 sm:space-y-3 max-h-[calc(100vh-320px)] sm:max-h-[calc(100vh-280px)] overflow-y-auto">
         {candidates.length === 0 ? (
           <div className="py-8 text-center">
             <EmptyInboxIcon className="w-10 h-10 mx-auto mb-2 text-[var(--text-muted)] opacity-50" />

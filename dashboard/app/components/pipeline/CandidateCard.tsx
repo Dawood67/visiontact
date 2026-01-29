@@ -14,9 +14,9 @@ export function CandidateCard({ candidate }: CandidateCardProps) {
 
   return (
     <Link href={`/jobs/${candidate.jobId}/candidates/${candidate.id}`}>
-      <div className="p-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg card-interactive cursor-pointer">
-        <div className="flex items-start gap-3">
-          <div className="avatar flex-shrink-0">
+      <div className="p-3 sm:p-4 bg-[var(--bg-tertiary)] border border-[var(--border)] rounded-lg card-interactive cursor-pointer">
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className="avatar avatar-sm sm:avatar flex-shrink-0">
             {getInitials(candidate.name)}
           </div>
 

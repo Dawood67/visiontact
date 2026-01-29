@@ -52,23 +52,23 @@ export default function AnalyticsPage() {
     <DashboardLayout>
       <Header title="Analytics" subtitle="Recruitment metrics and insights" />
 
-      <div className="p-8">
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <p className="text-sm text-[var(--text-muted)] mb-2">Total Candidates</p>
-            <p className="text-3xl font-bold text-[var(--text-primary)] tabular-nums">
+      <div className="p-4 sm:p-6 lg:p-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1 sm:mb-2">Total Candidates</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tabular-nums">
               {totalCandidates}
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <p className="text-sm text-[var(--text-muted)] mb-2">Active Jobs</p>
-            <p className="text-3xl font-bold text-[var(--text-primary)] tabular-nums">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1 sm:mb-2">Active Jobs</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tabular-nums">
               {activeJobs}
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <p className="text-sm text-[var(--text-muted)] mb-2">Interview Rate</p>
-            <p className="text-3xl font-bold text-[var(--accent)] tabular-nums">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1 sm:mb-2">Interview Rate</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[var(--accent)] tabular-nums">
               {totalCandidates > 0
                 ? Math.round(
                     (candidates.filter((c) => c.stage === 'interview').length / totalCandidates) *
@@ -78,9 +78,9 @@ export default function AnalyticsPage() {
               %
             </p>
           </div>
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <p className="text-sm text-[var(--text-muted)] mb-2">Avg Score</p>
-            <p className="text-3xl font-bold text-[var(--text-primary)] tabular-nums">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <p className="text-xs sm:text-sm text-[var(--text-muted)] mb-1 sm:mb-2">Avg Score</p>
+            <p className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)] tabular-nums">
               {totalCandidates > 0
                 ? Math.round(candidates.reduce((sum, c) => sum + c.score, 0) / totalCandidates)
                 : 0}
@@ -88,9 +88,9 @@ export default function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-6">
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <h3 className="font-medium text-[var(--text-primary)] mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">
               Candidates by Stage
             </h3>
             <div className="space-y-4">
@@ -116,8 +116,8 @@ export default function AnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <h3 className="font-medium text-[var(--text-primary)] mb-6">
+          <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">
               Average Score by Stage
             </h3>
             <div className="space-y-4">
@@ -146,8 +146,8 @@ export default function AnalyticsPage() {
             </div>
           </div>
 
-          <div className="col-span-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
-            <h3 className="font-medium text-[var(--text-primary)] mb-6">
+          <div className="md:col-span-2 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-4 sm:p-6">
+            <h3 className="font-medium text-[var(--text-primary)] mb-4 sm:mb-6">
               Most Common Skills
             </h3>
             <div className="flex flex-wrap gap-3">

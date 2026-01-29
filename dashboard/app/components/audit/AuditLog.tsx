@@ -14,7 +14,7 @@ export function AuditLog({ jobId }: AuditLogProps) {
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <h3 className="font-medium text-[var(--text-primary)] mb-1">
           Activity Log
         </h3>
@@ -23,8 +23,8 @@ export function AuditLog({ jobId }: AuditLogProps) {
         </p>
       </div>
 
-      <div className="flex items-center gap-2 p-3 bg-[rgba(199,93,58,0.1)] border border-[rgba(199,93,58,0.3)] rounded-lg mb-6">
-        <div className="w-2 h-2 rounded-full bg-[var(--accent)]" />
+      <div className="flex items-center gap-2 p-3 bg-[rgba(199,93,58,0.1)] border border-[rgba(199,93,58,0.3)] rounded-lg mb-4 sm:mb-6">
+        <div className="w-2 h-2 rounded-full bg-[var(--accent)] flex-shrink-0" />
         <span className="text-xs font-medium text-[var(--accent-light)]">
           Trust-Critical: All actions are logged and immutable
         </span>
@@ -42,7 +42,7 @@ export function AuditLog({ jobId }: AuditLogProps) {
         <div className="bg-[var(--bg-secondary)] rounded-xl border border-[var(--border)]">
           <div className="divide-y divide-[var(--border)]">
             {logs.map((log) => (
-              <div key={log.id} className="px-4">
+              <div key={log.id} className="px-3 sm:px-4">
                 <AuditEntry entry={log} />
               </div>
             ))}

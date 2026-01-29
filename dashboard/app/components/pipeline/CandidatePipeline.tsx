@@ -69,8 +69,8 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-6">
-        <div className="relative flex-1 max-w-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="relative flex-1 sm:max-w-xs">
           <input
             type="text"
             placeholder="Search candidates..."
@@ -81,11 +81,11 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
         </div>
 
         <div className="flex items-center gap-2">
-          <FilterIcon size={16} className="text-[var(--text-muted)]" />
+          <FilterIcon size={16} className="text-[var(--text-muted)] hidden sm:block" />
           <select
             value={currentSortValue}
             onChange={(e) => setCandidateSort(parseSortValue(e.target.value))}
-            className="select h-10 text-sm w-40"
+            className="select h-10 text-sm flex-1 sm:flex-none sm:w-40"
           >
             {SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -96,7 +96,7 @@ export function CandidatePipeline({ jobId }: CandidatePipelineProps) {
         </div>
       </div>
 
-      <div className="flex gap-4 overflow-x-auto pb-4">
+      <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0">
         {STAGE_ORDER.map((stage) => (
           <StageColumn
             key={stage}

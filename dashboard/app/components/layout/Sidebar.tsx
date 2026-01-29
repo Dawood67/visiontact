@@ -8,6 +8,7 @@ import {
   UsersIcon,
   ChartIcon,
   SettingsIcon,
+  XIcon,
 } from '../ui/Icons';
 import { cn } from '../../lib/utils';
 
@@ -18,23 +19,50 @@ const navItems = [
   { href: '/settings', label: 'Settings', icon: SettingsIcon },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed left-0 top-0 bottom-0 w-64 bg-[var(--bg-secondary)] border-r border-[var(--border)] flex flex-col">
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+          onClick={onClose}
+        />
+      )}
+
+      <aside className={cn(
+        "fixed left-0 top-0 bottom-0 w-64 bg-[var(--bg-secondary)] border-r border-[var(--border)] flex flex-col z-50",
+        "lg:translate-x-0",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
       <div className="p-6 border-b border-[var(--border)]">
-        <Link href="/jobs" className="flex items-center gap-3">
-          <LogoIcon size={36} />
-          <div>
-            <span className="font-serif text-lg font-semibold text-[var(--text-primary)]">
-              Visiontact
-            </span>
-            <span className="block text-xs text-[var(--text-muted)]">
-              Recruiter Workspace
-            </span>
-          </div>
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link href="/jobs" className="flex items-center gap-3" onClick={onClose}>
+            <LogoIcon size={36} />
+            <div>
+              <span className="font-serif text-lg font-semibold text-[var(--text-primary)]">
+                Visiontact
+              </span>
+              <span className="block text-xs text-[var(--text-muted)]">
+                Recruiter Workspace
+              </span>
+            </div>
+          </Link>
+          <button
+            onClick={onClose}
+            className="lg:hidden p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            aria-label="Close menu"
+          >
+            <XIcon size={20} />
+          </button>
+        </div>
       </div>
 
       <nav className="flex-1 p-4">
@@ -48,6 +76,7 @@ export function Sidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  onClick={onClose}
                   className={cn(
                     'flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium',
                     isActive
@@ -80,5 +109,6 @@ export function Sidebar() {
         </div>
       </div>
     </aside>
+    </>
   );
 }

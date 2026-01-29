@@ -39,30 +39,32 @@ export function AuditEntry({ entry }: AuditEntryProps) {
     iconMap[config.icon as keyof typeof iconMap] || ArrowRightIcon;
 
   return (
-    <div className="flex gap-4 py-4">
-      {/* Icon */}
-      <div
-        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
-        style={{ backgroundColor: `${config.color}20` }}
-      >
-        <IconComponent size={14} style={{ color: config.color }} />
-      </div>
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 py-3 sm:py-4">
+      <div className="flex gap-3 sm:gap-4 flex-1 min-w-0">
+        {/* Icon */}
+        <div
+          className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center"
+          style={{ backgroundColor: `${config.color}20` }}
+        >
+          <IconComponent size={14} style={{ color: config.color }} />
+        </div>
 
-      {/* Content */}
-      <div className="flex-1 min-w-0">
-        <p className="text-sm text-[var(--text-primary)]">
-          {entry.description}
-        </p>
-        <div className="flex items-center gap-3 mt-1 text-xs text-[var(--text-muted)]">
-          <span>{entry.performedBy}</span>
-          <span>&middot;</span>
-          <span>{formatDateTime(entry.timestamp)}</span>
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          <p className="text-sm text-[var(--text-primary)]">
+            {entry.description}
+          </p>
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-1 text-xs text-[var(--text-muted)]">
+            <span>{entry.performedBy}</span>
+            <span className="hidden sm:inline">&middot;</span>
+            <span>{formatDateTime(entry.timestamp)}</span>
+          </div>
         </div>
       </div>
 
       {/* Badge */}
       <span
-        className="flex-shrink-0 px-4 py-2 text-xs font-medium rounded-full mt-4"
+        className="flex-shrink-0 self-start sm:self-center px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-medium rounded-full ml-11 sm:ml-0"
         style={{
           backgroundColor: `${config.color}15`,
           color: config.color,

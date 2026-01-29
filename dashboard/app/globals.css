@@ -329,6 +329,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 50;
+  padding: 1rem;
 }
 
 .modal-content {
@@ -336,9 +337,23 @@ body {
   border: 1px solid var(--border);
   border-radius: 0.75rem;
   max-width: 32rem;
-  width: calc(100% - 2rem);
-  max-height: calc(100vh - 4rem);
+  width: 100%;
+  max-height: calc(100vh - 2rem);
   overflow: auto;
+}
+
+@media (max-width: 640px) {
+  .modal-backdrop {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-height: calc(100vh - 1rem);
+    border-radius: 0.75rem 0.75rem 0 0;
+    margin-bottom: -0.5rem;
+    padding-bottom: 1rem;
+  }
 }
 
 /* Tooltip */
@@ -551,4 +566,40 @@ body {
 
 .dropdown-item-danger:hover {
   background: rgba(199, 93, 93, 0.15);
+}
+
+/* Mobile sidebar transition */
+aside {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hide scrollbar on mobile filter chips */
+.overflow-x-auto::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-x-auto {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Responsive table adjustments */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Ensure touch targets are large enough on mobile */
+@media (max-width: 640px) {
+  .btn {
+    min-height: 2.5rem;
+  }
+
+  .select,
+  .input {
+    min-height: 2.5rem;
+  }
 }

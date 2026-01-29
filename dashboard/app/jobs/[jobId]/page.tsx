@@ -62,7 +62,7 @@ export default function JobDetailPage({ params }: PageProps) {
   return (
     <DashboardLayout>
       <div className="border-b border-[var(--border)] bg-[var(--bg-primary)]">
-        <div className="px-8 py-6">
+        <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <Link
             href="/jobs"
             className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] mb-4"
@@ -71,10 +71,10 @@ export default function JobDetailPage({ params }: PageProps) {
             Back to Jobs
           </Link>
 
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
             <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="font-serif text-2xl font-semibold text-[var(--text-primary)]">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                <h1 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
                   {job.title}
                 </h1>
                 <span
@@ -89,7 +89,7 @@ export default function JobDetailPage({ params }: PageProps) {
               </div>
               <p className="text-[var(--text-secondary)] mb-3">{job.department}</p>
 
-              <div className="flex items-center gap-5 text-sm text-[var(--text-muted)]">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-sm text-[var(--text-muted)]">
                 <span className="flex items-center gap-1.5">
                   <MapPinIcon size={14} />
                   {job.location}
@@ -106,42 +106,42 @@ export default function JobDetailPage({ params }: PageProps) {
               </div>
             </div>
 
-            <button className="btn btn-secondary">
+            <button className="btn btn-secondary w-full sm:w-auto">
               <EditIcon size={16} />
               Edit Job
             </button>
           </div>
 
-          <div className="grid grid-cols-4 gap-4 mt-6">
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-4 sm:mt-6">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-3 sm:p-4">
               <p className="text-xs text-[var(--text-muted)] mb-1">Applied</p>
-              <p className="text-xl font-semibold text-[#7BA3D4] tabular-nums">
+              <p className="text-lg sm:text-xl font-semibold text-[#7BA3D4] tabular-nums">
                 {stageCounts.applied || 0}
               </p>
             </div>
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-3 sm:p-4">
               <p className="text-xs text-[var(--text-muted)] mb-1">Shortlisted</p>
-              <p className="text-xl font-semibold text-[#E0B85C] tabular-nums">
+              <p className="text-lg sm:text-xl font-semibold text-[#E0B85C] tabular-nums">
                 {stageCounts.shortlisted || 0}
               </p>
             </div>
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-3 sm:p-4">
               <p className="text-xs text-[var(--text-muted)] mb-1">Interview</p>
-              <p className="text-xl font-semibold text-[#96B580] tabular-nums">
+              <p className="text-lg sm:text-xl font-semibold text-[#96B580] tabular-nums">
                 {stageCounts.interview || 0}
               </p>
             </div>
-            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-4">
+            <div className="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-lg p-3 sm:p-4">
               <p className="text-xs text-[var(--text-muted)] mb-1">Rejected</p>
-              <p className="text-xl font-semibold text-[#D47A7A] tabular-nums">
+              <p className="text-lg sm:text-xl font-semibold text-[#D47A7A] tabular-nums">
                 {stageCounts.rejected || 0}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="px-8">
-          <div className="tabs">
+        <div className="px-4 sm:px-6 lg:px-8 overflow-x-auto">
+          <div className="tabs min-w-max">
             {JOB_TABS.map((tab) => (
               <button
                 key={tab.id}
@@ -155,7 +155,7 @@ export default function JobDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="p-4 sm:p-6 lg:p-8">
         {activeTab === 'candidates' && <CandidatePipeline jobId={jobId} />}
         {activeTab === 'rubric' && <RubricList jobId={jobId} />}
         {activeTab === 'audit' && <AuditLog jobId={jobId} />}
