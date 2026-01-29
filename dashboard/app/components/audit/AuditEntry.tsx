@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import type { AuditEntry as AuditEntryType } from '../../lib/types';
-import { AUDIT_ACTION_CONFIG } from '../../lib/constants';
-import { formatDateTime } from '../../lib/utils';
+import type { AuditEntry as AuditEntryType } from "../../lib/types";
+import { AUDIT_ACTION_CONFIG } from "../../lib/constants";
+import { formatDateTime } from "../../lib/utils";
 import {
   UserPlusIcon,
   ArrowRightIcon,
@@ -14,19 +14,19 @@ import {
   PlusCircleIcon,
   EditIcon,
   MessageSquareIcon,
-} from '../ui/Icons';
+} from "../ui/Icons";
 
 const iconMap = {
-  'user-plus': UserPlusIcon,
-  'arrow-right': ArrowRightIcon,
-  'x-circle': XCircleIcon,
+  "user-plus": UserPlusIcon,
+  "arrow-right": ArrowRightIcon,
+  "x-circle": XCircleIcon,
   star: StarIcon,
   calendar: CalendarIcon,
   cpu: CpuIcon,
   sliders: SlidersIcon,
-  'plus-circle': PlusCircleIcon,
+  "plus-circle": PlusCircleIcon,
   edit: EditIcon,
-  'message-square': MessageSquareIcon,
+  "message-square": MessageSquareIcon,
 };
 
 interface AuditEntryProps {
@@ -35,7 +35,8 @@ interface AuditEntryProps {
 
 export function AuditEntry({ entry }: AuditEntryProps) {
   const config = AUDIT_ACTION_CONFIG[entry.action];
-  const IconComponent = iconMap[config.icon as keyof typeof iconMap] || ArrowRightIcon;
+  const IconComponent =
+    iconMap[config.icon as keyof typeof iconMap] || ArrowRightIcon;
 
   return (
     <div className="flex gap-4 py-4">
@@ -49,7 +50,9 @@ export function AuditEntry({ entry }: AuditEntryProps) {
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <p className="text-sm text-[var(--text-primary)]">{entry.description}</p>
+        <p className="text-sm text-[var(--text-primary)]">
+          {entry.description}
+        </p>
         <div className="flex items-center gap-3 mt-1 text-xs text-[var(--text-muted)]">
           <span>{entry.performedBy}</span>
           <span>&middot;</span>
@@ -59,7 +62,7 @@ export function AuditEntry({ entry }: AuditEntryProps) {
 
       {/* Badge */}
       <span
-        className="flex-shrink-0 px-2 py-0.5 text-xs font-medium rounded-full"
+        className="flex-shrink-0 px-4 py-2 text-xs font-medium rounded-full mt-4"
         style={{
           backgroundColor: `${config.color}15`,
           color: config.color,

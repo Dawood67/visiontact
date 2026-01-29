@@ -85,10 +85,6 @@ export default function AllCandidatesPage() {
       <div className="p-8">
         <div className="flex items-center gap-4 mb-6">
           <div className="relative flex-1 max-w-md">
-            {/* <SearchIcon
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
-              size={16}
-            /> */}
             <input
               type="text"
               placeholder="Search by name, email, or skill..."
